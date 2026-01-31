@@ -29,6 +29,15 @@ func main() {
 		}
 	}()
 
+	// ヘルスチェックエンドポイント
+	router.GET("/health", func(c *gin.Context) {
+		// 追加予定：DBの接続確認
+		// ・・・
+		c.JSON(http.StatusOK, gin.H{
+			"status": "ok",
+		})
+	})
+
 	// 3. 終了シグナルを待機するチャネルを作成
 	// SIGINT (Ctrl+C) と SIGTERM (ECSからの停止命令) を受け取る
 	quit := make(chan os.Signal, 1)
